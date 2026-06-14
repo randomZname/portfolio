@@ -21,9 +21,10 @@ export default function Preloader({ onDone }) {
       .to('.preloader__count, .preloader__label', { yPercent: -120, duration: 0.7, ease: 'power3.in', stagger: 0.06 }, '+=0.15')
       .to(root.current, {
         yPercent: -100,
-        duration: 1,
+        duration: 1.05,
         ease: 'expo.inOut',
-        onComplete: () => { onDone?.(); root.current.style.display = 'none' },
+        onStart: () => onDone?.(),           // reveal hero as the curtain lifts
+        onComplete: () => { root.current.style.display = 'none' },
       }, '-=0.1')
   }, { scope: root })
 

@@ -8,6 +8,7 @@ import Preloader from './components/Preloader'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
+import Stats from './components/Stats'
 import Journey from './components/Journey'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
@@ -61,6 +62,7 @@ export default function App() {
       <main>
         <Hero play={revealed} />
         <Marquee />
+        <Stats />
         <Journey />
         <Projects />
         <Contact />
