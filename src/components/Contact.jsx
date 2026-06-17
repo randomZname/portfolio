@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import AnimatedText from './AnimatedText'
 import Magnetic from './Magnetic'
 import { contact } from '../data/content'
+import { prefersReduced } from '../lib/motion'
 import '../styles/contact.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -13,9 +14,10 @@ export default function Contact() {
   const root = useRef(null)
 
   useGSAP(() => {
+    if (prefersReduced()) return
     gsap.from(root.current.querySelectorAll('.contact__reveal'), {
       opacity: 0, y: 30, duration: 0.85, ease: 'power3.out', stagger: 0.1,
-      scrollTrigger: { trigger: root.current, start: 'top 75%' },
+      scrollTrigger: { trigger: root.current, start: 'top 75%', once: true },
     })
   }, { scope: root })
 

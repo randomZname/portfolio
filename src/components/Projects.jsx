@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import AnimatedText from './AnimatedText'
 import Magnetic from './Magnetic'
 import { projects } from '../data/content'
+import { prefersReduced } from '../lib/motion'
 import '../styles/projects.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -28,6 +29,7 @@ function Media({ image, name, live, liveLabel }) {
       duration: 0.5,
       ease: 'power2.out',
       transformPerspective: 1000,
+      overwrite: 'auto',
     })
   }
   const onLeave = () => gsap.to(ref.current, { rotateY: 0, rotateX: 0, duration: 0.7, ease: 'power3.out' })
@@ -58,6 +60,7 @@ export default function Projects() {
   const root = useRef(null)
 
   useGSAP(() => {
+    if (prefersReduced()) return
     gsap.utils.toArray('.project').forEach((p) => {
       gsap.from(
         p.querySelectorAll('.project__index, .project__title, .project__tagline, .project__desc, .project__tags, .project__links'),

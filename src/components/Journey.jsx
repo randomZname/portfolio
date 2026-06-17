@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import AnimatedText from './AnimatedText'
 import { journey } from '../data/content'
+import { prefersReduced } from '../lib/motion'
 import '../styles/journey.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -13,13 +14,14 @@ export default function Journey() {
   const root = useRef(null)
 
   useGSAP(() => {
+    if (prefersReduced()) return
     gsap.from('.step', {
       opacity: 0,
       y: 44,
       duration: 0.9,
       ease: 'power3.out',
       stagger: 0.12,
-      scrollTrigger: { trigger: '.journey__steps', start: 'top 84%' },
+      scrollTrigger: { trigger: '.journey__steps', start: 'top 84%', once: true },
     })
   }, { scope: root })
 

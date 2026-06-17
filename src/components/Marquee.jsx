@@ -3,6 +3,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { marquee } from '../data/content'
+import { prefersReduced } from '../lib/motion'
 import '../styles/marquee.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -14,6 +15,7 @@ export default function Marquee() {
   const track = useRef(null)
 
   useGSAP(() => {
+    if (prefersReduced()) return // no infinite scroll under reduced motion
     const loop = gsap.to(track.current, {
       xPercent: -50,
       duration: 26,

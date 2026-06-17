@@ -3,6 +3,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { stats } from '../data/content'
+import { prefersReduced } from '../lib/motion'
 import '../styles/stats.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -12,24 +13,29 @@ export default function Stats() {
   const root = useRef(null)
 
   useGSAP(() => {
-    gsap.from('.stat', {
-      opacity: 0,
-      y: 32,
-      duration: 0.8,
-      ease: 'power3.out',
-      stagger: 0.1,
-      scrollTrigger: { trigger: root.current, start: 'top 85%' },
-    })
+    const reduce = prefersReduced()
+
+    if (!reduce) {
+      gsap.from('.stat', {
+        opacity: 0,
+        y: 32,
+        duration: 0.8,
+        ease: 'power3.out',
+        stagger: 0.1,
+        scrollTrigger: { trigger: root.current, start: 'top 85%', once: true },
+      })
+    }
 
     root.current.querySelectorAll('.stat__value').forEach((el) => {
       const to = Number(el.dataset.to)
       const counter = el.querySelector('.stat__count')
+      if (reduce) { counter.textContent = to; return } // show final value, no count-up
       const obj = { v: 0 }
       gsap.to(obj, {
         v: to,
         duration: 1.8,
         ease: 'power2.out',
-        scrollTrigger: { trigger: root.current, start: 'top 85%' },
+        scrollTrigger: { trigger: root.current, start: 'top 85%', once: true },
         onUpdate: () => { counter.textContent = Math.round(obj.v) },
       })
     })

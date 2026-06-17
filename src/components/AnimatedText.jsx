@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { prefersReduced } from '../lib/motion'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
@@ -12,6 +13,7 @@ export default function AnimatedText({ text, as = 'span', className = '', delay 
   const Tag = as
 
   useGSAP(() => {
+    if (prefersReduced()) return // leave words in natural visible state
     const words = ref.current.querySelectorAll('.word > span')
     gsap.from(words, {
       yPercent: 110,
@@ -19,7 +21,7 @@ export default function AnimatedText({ text, as = 'span', className = '', delay 
       ease: 'power4.out',
       stagger,
       delay,
-      scrollTrigger: { trigger: ref.current, start: 'top 88%' },
+      scrollTrigger: { trigger: ref.current, start: 'top 88%', once: true },
     })
   }, { scope: ref })
 

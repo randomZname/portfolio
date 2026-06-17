@@ -11,7 +11,7 @@ export default function Magnetic({ children, strength = 0.4 }) {
     const r = el.getBoundingClientRect()
     const x = (e.clientX - (r.left + r.width / 2)) * strength
     const y = (e.clientY - (r.top + r.height / 2)) * strength
-    gsap.to(el, { x, y, duration: 0.6, ease: 'power3.out' })
+    gsap.to(el, { x, y, duration: 0.6, ease: 'power3.out', overwrite: 'auto' })
   }
 
   const onLeave = () => {

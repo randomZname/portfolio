@@ -50,7 +50,8 @@ export default function App() {
   const handleDone = () => {
     setRevealed(true)
     lenisRef.current?.start()
-    ScrollTrigger.refresh()
+    // Defer to next frame so reveals measure after the curtain settles + Lenis resumes.
+    requestAnimationFrame(() => ScrollTrigger.refresh())
   }
 
   return (

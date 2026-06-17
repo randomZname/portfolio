@@ -179,7 +179,13 @@
     gap: 2.5rem;
     padding-top: 7rem;
   }
-  .hero__terminal { order: -1; }
+  .hero__terminal {
+    order: -1;
+    /* flat panel on mobile — backdrop-filter over a moving page is costly */
+    background: rgba(20, 20, 22, 0.92);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
   .hero__glow { left: 50%; top: 35%; width: 90vw; }
 }
 

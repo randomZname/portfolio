@@ -67,7 +67,7 @@ export const projects = {
     {
       id: '01',
       name: 'BogiAgent',
-      image: '/projects/bogiagent.png',
+      image: '/projects/bogiagent.jpg',
       tagline: 'A personal AI agent that runs my life.',
       desc: '13k lines of Python: an LLM agent with 25+ tools, hybrid RAG, long-term memory and a safety-first architecture. Telegram, CLI and a web dashboard.',
       tags: ['Python', 'Pydantic AI', 'LiteLLM', 'pgvector RAG', 'FastAPI', 'Playwright'],
@@ -78,7 +78,7 @@ export const projects = {
     {
       id: '02',
       name: 'Lumora',
-      image: '/projects/lumora.png',
+      image: '/projects/lumora.jpg',
       tagline: 'AI video generation, as a product.',
       desc: 'Turns images and prompts into cinematic clips in ~30s. Full SaaS — generation pipeline, auth and Stripe billing.',
       tags: ['Next.js 14', 'TypeScript', 'Prisma', 'fal.ai', 'Stripe'],
@@ -89,7 +89,7 @@ export const projects = {
     {
       id: '03',
       name: 'AlterMed',
-      image: '/projects/altermed.png',
+      image: '/projects/altermed.jpg',
       tagline: 'A clinic platform, production-ready.',
       desc: 'Multilingual medical site — service catalog and a booking flow with payments. Built for speed and SEO.',
       tags: ['Next.js 16', 'Tailwind v4', 'i18n', 'Booking', 'Payments'],

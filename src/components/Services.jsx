@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import AnimatedText from './AnimatedText'
 import { services } from '../data/content'
+import { prefersReduced } from '../lib/motion'
 import '../styles/services.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -13,13 +14,14 @@ export default function Services() {
   const root = useRef(null)
 
   useGSAP(() => {
+    if (prefersReduced()) return
     gsap.from('.service-card', {
       opacity: 0,
       y: 48,
       duration: 0.9,
       ease: 'power3.out',
       stagger: 0.12,
-      scrollTrigger: { trigger: '.services__grid', start: 'top 82%' },
+      scrollTrigger: { trigger: '.services__grid', start: 'top 82%', once: true },
     })
   }, { scope: root })
 
