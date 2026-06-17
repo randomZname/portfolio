@@ -1,0 +1,97 @@
+.contact {
+  padding-block: clamp(6rem, 13vw, 12rem) clamp(4rem, 8vw, 7rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact__eyebrow {
+  justify-content: center;
+}
+
+.contact__heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-size: clamp(3rem, 12vw, 9rem);
+  margin-bottom: clamp(1.8rem, 4vw, 3rem);
+}
+.contact__dot {
+  color: var(--accent);
+}
+
+.contact__sub {
+  max-width: 32ch;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  margin-bottom: clamp(2.2rem, 5vw, 3.5rem);
+}
+
+/* big mailto with underline-grow hover */
+.contact__mail {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--accent);
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  letter-spacing: -0.01em;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: 0.1em;
+  word-break: break-word;
+}
+.contact__mail::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .5s var(--ease);
+}
+.contact__mail:hover::after {
+  transform: scaleX(1);
+}
+
+.contact__socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* ---- footer ---- */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 2.5rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+.footer__meta {
+  color: var(--muted-2);
+}
+.footer__top {
+  transition: color .3s var(--ease);
+}
+.footer__top:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+}

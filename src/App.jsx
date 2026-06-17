@@ -8,6 +8,7 @@ import Preloader from './components/Preloader'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
+import Services from './components/Services'
 import Stats from './components/Stats'
 import Journey from './components/Journey'
 import Projects from './components/Projects'
@@ -29,7 +30,6 @@ export default function App() {
     gsap.ticker.add(tick)
     gsap.ticker.lagSmoothing(0)
 
-    // Smooth in-page anchor navigation
     const onClick = (e) => {
       const a = e.target.closest('a[href^="#"]')
       if (!a) return
@@ -62,6 +62,7 @@ export default function App() {
       <main>
         <Hero play={revealed} />
         <Marquee />
+        <Services />
         <Stats />
         <Journey />
         <Projects />
