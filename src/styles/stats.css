@@ -5,6 +5,10 @@
   background: var(--bg-soft);
 }
 
+.stats__eyebrow {
+  margin-bottom: clamp(2rem, 5vw, 3.2rem);
+}
+
 .stats__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -19,23 +23,27 @@
 .stat__value {
   display: flex;
   align-items: baseline;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 5.5vw, 3.8rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
   color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
 
 .stat__suffix {
-  font-size: 0.6em;
-  margin-left: 0.05em;
+  font-size: 0.55em;
+  margin-left: 0.15em;
 }
 
 .stat__label {
   margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-variant-caps: small-caps;
+  letter-spacing: 0.03em;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   line-height: 1.45;
   max-width: 22ch;
 }

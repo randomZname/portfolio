@@ -6,7 +6,9 @@ import { nav } from '../data/content'
 import '../styles/nav.css'
 
 /* Top navigation. Logo + links pulled from content.js. Drops in from the top
-   on mount (after the preloader is already lifting, so it feels layered). */
+   on mount (after the preloader is already lifting, so it feels layered).
+   The "Ctrl K" chip dispatches a window CustomEvent that CommandPalette
+   listens for — keeps Nav and CommandPalette decoupled. */
 export default function Nav() {
   const root = useRef(null)
 
@@ -19,6 +21,8 @@ export default function Nav() {
       ease: 'power3.out',
     })
   }, { scope: root })
+
+  const openPalette = () => window.dispatchEvent(new CustomEvent('palette:open'))
 
   return (
     <nav className="nav" ref={root}>
@@ -38,6 +42,16 @@ export default function Nav() {
             </a>
           </Magnetic>
         ))}
+        <button
+          type="button"
+          className="nav__hint"
+          data-cursor="hover"
+          onClick={openPalette}
+          aria-label="Open command palette"
+        >
+          <span className="nav__hint-icon" aria-hidden="true">/</span>
+          {nav.paletteHint}
+        </button>
       </div>
     </nav>
   )

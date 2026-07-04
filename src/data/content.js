@@ -1,5 +1,12 @@
 // Single source of truth for all portfolio copy + data.
 // Components import from here — do not hardcode copy in components.
+//
+// CONTRACT NOTES (builders — read before consuming):
+// - Split headings use { pre, em, post }: render `pre`, then `em` inside
+//   <em className="em-serif">, then `post`. Never flatten into one string.
+// - Section ids must be: #work, #services, #journey, #contact (palette + nav
+//   anchors depend on them).
+// - hero.meta.tz feeds the live local-time clock (Intl.DateTimeFormat).
 
 export const nav = {
   logo: 'Bogdan',
@@ -9,26 +16,35 @@ export const nav = {
     { label: 'Contact', href: '#contact' },
     { label: 'Résumé ↗', href: '/cv/Bogdan_Stefanov_CV_EN.pdf', external: true },
   ],
+  paletteHint: 'Ctrl K',
+}
+
+export const preloader = {
+  lines: [
+    'initializing signal…',
+    'loading weights…',
+    'mounting tools…',
+    'signal acquired',
+  ],
 }
 
 export const hero = {
   availability: 'Available — AI roles, freelance & collabs',
   name: ['BOGDAN', 'STEFANOV'],
-  role: 'I build custom AI agents, web apps & automations — end to end.',
-  // terminal typed sequence
-  terminalTitle: 'bogi-agent — ~/portfolio',
-  terminal: [
-    { type: 'cmd', text: '$ whoami' },
-    { type: 'tool', text: '▸ booting bogdan.stefanov ✓' },
-    { type: 'tool', text: '▸ loading capabilities ✓' },
-    { type: 'chips', items: ['AI Agents', 'Web Apps', 'Automations'] },
-    { type: 'ans', text: 'I build custom AI agents, apps and automations — end to end. Idea to shipped.' },
-  ],
+  role: { pre: 'AI developer who builds agents that ', em: 'ship', post: '.' },
+  sub: 'Custom LLM agents, web apps & automations — end to end.',
+  meta: {
+    coords: 'SOFIA · 42.69°N 23.32°E',
+    tz: 'Europe/Sofia',
+    available: 'AVAILABLE',
+  },
+  scrollHint: 'scroll',
 }
 
 export const marquee = [
-  'LLM Agents', 'Tool Use', 'RAG', 'Pydantic AI', 'LiteLLM', 'Python', 'TypeScript',
-  'Next.js', 'FastAPI', 'pgvector', 'Playwright', 'n8n', 'Automation', 'Docker', 'Stripe', 'Shipping',
+  'LLM Agents', 'Tool Use', 'RAG', 'Whisper', 'Pydantic AI', 'LiteLLM', 'Python',
+  'TypeScript', 'Next.js', 'FastAPI', 'pgvector', 'Playwright', 'n8n',
+  'Automation', 'Docker', 'Stripe', 'Signal', 'Shipping',
 ]
 
 export const services = {
@@ -41,16 +57,19 @@ export const services = {
   ],
 }
 
-export const stats = [
-  { value: 2, suffix: 'y+', label: 'Running my own business' },
-  { value: 3, suffix: '', label: 'Products shipped & live' },
-  { value: 13, suffix: 'K+', label: 'Lines of Python in my AI agent' },
-  { value: 25, suffix: '+', label: 'Agent tools built' },
-]
+export const stats = {
+  eyebrow: 'Telemetry',
+  items: [
+    { value: 2, suffix: 'y+', label: 'Running my own business' },
+    { value: 4, suffix: '', label: 'Products shipped & live' },
+    { value: 13, suffix: 'K+', label: 'Lines of Python in my AI agent' },
+    { value: 25, suffix: '+', label: 'Agent tools built' },
+  ],
+}
 
 export const journey = {
   eyebrow: 'Who I am',
-  heading: 'I build things that ship.',
+  heading: { pre: 'I build things that ', em: 'ship', post: '.' },
   lead: "Founder, operator and self-taught engineer. I've led teams and run my own business — now I build AI products end to end. Give me a problem; I'll learn whatever it takes and ship the solution.",
   steps: [
     { year: '2023', title: 'Sold & led', desc: 'Closed financial products and led a sales team. Learned to read people and own the number.' },
@@ -62,7 +81,7 @@ export const journey = {
 
 export const projects = {
   eyebrow: 'Selected work',
-  heading: "Things I've shipped.",
+  heading: { pre: 'Things I have ', em: 'shipped', post: '.' },
   items: [
     {
       id: '01',
@@ -88,6 +107,17 @@ export const projects = {
     },
     {
       id: '03',
+      name: 'Watchless',
+      image: '/projects/watchless.jpg',
+      tagline: 'YouTube content intelligence, without the watching.',
+      desc: 'A pipeline that watches so I don\'t have to: transcripts → LLM knowledge cards → canonical dedupe → RAG answers with citations → cross-video synthesis reports.',
+      tags: ['Python', 'FastAPI', 'Whisper', 'RAG', 'SQLite', 'LLM pipeline'],
+      live: 'https://yt-signal-desk.vercel.app',
+      code: 'https://github.com/randomZname/watchless',
+      liveLabel: 'Live demo',
+    },
+    {
+      id: '04',
       name: 'AlterMed',
       image: '/projects/altermed.jpg',
       tagline: 'A clinic platform, production-ready.',
@@ -102,15 +132,41 @@ export const projects = {
 
 export const contact = {
   eyebrow: "Let's build",
-  heading: "Let's build something.",
+  heading: { pre: "Let's build ", em: 'something', post: '.' },
   sub: "Got a problem worth solving? I'm open to AI / Agentic / Automation roles, freelance and collabs.",
   email: 'bogdan.mstefanov@gmail.com',
   phone: '+359 877 772 253',
   location: 'Sofia, Bulgaria',
+  tz: 'Europe/Sofia',
   socials: [
     { label: 'GitHub', href: 'https://github.com/randomZname' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/bogdan-stefanov-2032802b0' },
     { label: 'Email', href: 'mailto:bogdan.mstefanov@gmail.com' },
     { label: 'Résumé', href: '/cv/Bogdan_Stefanov_CV_EN.pdf' },
+  ],
+}
+
+// Command palette (Ctrl+K / '/'). external: true → target _blank.
+export const palette = {
+  placeholder: 'Where to?',
+  groups: [
+    {
+      label: 'Navigate',
+      items: [
+        { label: 'Work', href: '#work' },
+        { label: 'What I build', href: '#services' },
+        { label: 'Journey', href: '#journey' },
+        { label: 'Contact', href: '#contact' },
+      ],
+    },
+    {
+      label: 'Links',
+      items: [
+        { label: 'GitHub', href: 'https://github.com/randomZname', external: true },
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/bogdan-stefanov-2032802b0', external: true },
+        { label: 'Résumé', href: '/cv/Bogdan_Stefanov_CV_EN.pdf', external: true },
+        { label: 'Email', href: 'mailto:bogdan.mstefanov@gmail.com', external: true },
+      ],
+    },
   ],
 }

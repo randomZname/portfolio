@@ -1,145 +1,81 @@
-/* Hero — "Agent Terminal". Terminal (left) beside the big name (right).
-   Inner content stays hidden until JS flips visibility (no flash before play). */
+/* Hero — "Signal". Signal Field (WebGL/CSS-fallback) fills the section behind
+   giant editorial type. Inner content stays hidden until JS flips visibility
+   (no flash before play). */
 .hero {
   position: relative;
   min-height: 100vh;
   min-height: 100svh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
+  background: var(--bg);
 }
 
-/* Soft accent glow behind the terminal. */
-.hero__glow {
+/* Bottom-up scrim over the canvas so type stays readable — painted after the
+   .signal-field child (same stacking level, later in DOM = on top of it),
+   still below .hero__inner (z-index 1). */
+.hero::after {
+  content: '';
   position: absolute;
-  top: 50%;
-  left: 22%;
-  width: 60vw;
-  max-width: 900px;
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent), transparent 62%);
-  filter: blur(60px);
-  pointer-events: none;
+  inset: 0;
   z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(11, 10, 16, 0.88) 0%, rgba(11, 10, 16, 0.45) 38%, rgba(11, 10, 16, 0) 68%),
+    linear-gradient(to right, rgba(11, 10, 16, 0.5) 0%, rgba(11, 10, 16, 0) 55%);
 }
 
 .hero__inner {
   position: relative;
   z-index: 1;
   visibility: hidden;
-  display: grid;
-  grid-template-columns: 1fr 0.95fr;
-  align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
   width: 100%;
-  padding-top: 6rem;
-  padding-bottom: 3rem;
+  padding-top: 7rem;
+  padding-bottom: 6rem;
 }
 
-/* ---------- LEFT: terminal ---------- */
-.hero__terminal {
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(20, 20, 22, 0.6);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  overflow: hidden;
+.hero__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(3.5rem, 12vw, 11rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+.hero__name-line > span { display: inline-block; will-change: transform; }
+
+.hero__role {
+  margin-top: 1.75rem;
+  max-width: 36ch;
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  line-height: 1.4;
+  color: var(--text);
 }
 
-.hero__bar {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  padding: 0.85rem 1.1rem;
-  border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.02);
-}
-.hero__dots { display: inline-flex; gap: 0.45rem; }
-.hero__dots i {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--muted-2);
-}
-.hero__dots i:nth-child(1) { background: #ff5f57; }
-.hero__dots i:nth-child(2) { background: #febc2e; }
-.hero__dots i:nth-child(3) { background: #28c840; }
-.hero__title-mono {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+.hero__sub {
+  margin-top: 0.85rem;
+  max-width: 42ch;
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.6;
   color: var(--muted);
-  letter-spacing: 0.02em;
 }
 
-.hero__body {
-  padding: 1.4rem 1.4rem 1.6rem;
-  font-family: var(--font-mono);
-  font-size: clamp(0.82rem, 1.05vw, 0.95rem);
-  line-height: 1.85;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.hero__line-item { opacity: 0; }
-.hero__type {
-  display: inline-block;
-  max-width: 100%;
-  will-change: clip-path;
-}
-
-.hero__cmd { color: var(--muted); }
-.hero__tool .hero__type { color: var(--accent); }
-.hero__ans .hero__type { color: var(--text); }
-
-.hero__chips {
+.hero__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0.5rem 0;
-}
-.hero__chip {
-  font-size: 0.74rem;
-  padding: 0.32rem 0.75rem;
-  border: 1px solid var(--accent-dim);
-  border-radius: 100px;
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 8%, transparent);
-}
-
-.hero__prompt { display: flex; align-items: center; min-height: 1.4em; }
-.hero__caret {
-  display: inline-block;
-  width: 0.6em;
-  height: 1.05em;
-  background: var(--accent);
-  opacity: 0;
-  animation: hero-blink 1s steps(1) infinite;
-}
-@keyframes hero-blink {
-  0%, 50% { opacity: 1; }
-  50.01%, 100% { opacity: 0; }
-}
-
-/* ---------- RIGHT: name block ---------- */
-.hero__name-block { display: flex; flex-direction: column; }
-
-.hero__avail {
-  display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  align-self: flex-start;
+  gap: 0.85rem;
+  margin-top: 2.5rem;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--muted);
-  padding: 0.5rem 0.9rem;
-  border: 1px solid var(--line);
-  border-radius: 100px;
-  margin-bottom: 1.8rem;
 }
+.hero__meta-sep { color: var(--muted-2); }
+.hero__clock { font-variant-numeric: tabular-nums; }
+
+.hero__avail { display: inline-flex; align-items: center; gap: 0.55rem; color: var(--text); }
 .hero__avail-dot {
   width: 8px;
   height: 8px;
@@ -153,43 +89,40 @@
   50% { opacity: 0.35; transform: scale(0.65); }
 }
 
-.hero__name {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(3.5rem, 9vw, 8.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.03em;
-}
-.hero__name-line > span { display: inline-block; will-change: transform; }
-.hero__name-dot { color: var(--accent); }
-
-.hero__role {
-  margin-top: 1.6rem;
-  max-width: 30ch;
-  font-size: clamp(1rem, 1.4vw, 1.2rem);
-  line-height: 1.5;
+.hero__scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 2.25rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--muted);
 }
-.hero__role strong { color: var(--text); font-weight: 600; }
+.hero__scroll-arrow {
+  width: 1px;
+  height: 26px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: hero-scroll 1.8s ease-in-out infinite;
+}
+@keyframes hero-scroll {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.4; }
+  100% { transform: translateY(0); opacity: 1; }
+}
 
-/* ---------- responsive: terminal ABOVE name ---------- */
 @media (max-width: 900px) {
-  .hero__inner {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding-top: 7rem;
-  }
-  .hero__terminal {
-    order: -1;
-    /* flat panel on mobile — backdrop-filter over a moving page is costly */
-    background: rgba(20, 20, 22, 0.92);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  .hero__glow { left: 50%; top: 35%; width: 90vw; }
+  .hero__inner { padding-top: 6.5rem; padding-bottom: 5rem; }
+  .hero__scroll-hint { bottom: 1.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__caret { animation: none; opacity: 1; }
   .hero__avail-dot { animation: none; }
+  .hero__scroll-arrow { animation: none; }
 }

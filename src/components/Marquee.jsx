@@ -41,8 +41,8 @@ export default function Marquee() {
       <div className="marquee__track" ref={track}>
         {row.map((item, i) => (
           <span className="marquee__item" key={i}>
-            <span className="marquee__word">{item}</span>
-            <span className="marquee__sep">&#10022;</span>
+            <span className={`marquee__word${i % 2 === 1 ? ' marquee__word--outline' : ''}`}>{item}</span>
+            <span className="marquee__sep">&middot;</span>
           </span>
         ))}
       </div>

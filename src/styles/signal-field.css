@@ -1,0 +1,8 @@
+.signal-field { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.signal-field canvas { display: block; width: 100%; height: 100%; }
+.signal-field--static {
+  background:
+    radial-gradient(120% 90% at 72% 18%, rgba(108, 75, 255, 0.16) 0%, transparent 52%),
+    radial-gradient(90% 70% at 18% 82%, rgba(255, 92, 51, 0.18) 0%, transparent 55%),
+    var(--bg);
+}

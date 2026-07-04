@@ -8,7 +8,8 @@ import '../styles/stats.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-/* Stat grid — big accent numbers count up from 0 when scrolled into view. */
+/* Telemetry — a mono system-readout strip. Big accent numerals count up from
+   0 when scrolled into view; labels are small-caps mono. */
 export default function Stats() {
   const root = useRef(null)
 
@@ -43,16 +44,19 @@ export default function Stats() {
 
   return (
     <section className="stats" ref={root}>
-      <div className="wrap stats__grid">
-        {stats.map((s, i) => (
-          <div className="stat" key={i}>
-            <div className="stat__value" data-to={s.value}>
-              <span className="stat__count">0</span>
-              {s.suffix && <span className="stat__suffix">{s.suffix}</span>}
+      <div className="wrap">
+        <span className="eyebrow stats__eyebrow">{stats.eyebrow}</span>
+        <div className="stats__grid">
+          {stats.items.map((s, i) => (
+            <div className="stat" key={i}>
+              <div className="stat__value" data-to={s.value}>
+                <span className="stat__count">0</span>
+                {s.suffix && <span className="stat__suffix">{s.suffix}</span>}
+              </div>
+              <div className="stat__label">{s.label}</div>
             </div>
-            <div className="stat__label">{s.label}</div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )

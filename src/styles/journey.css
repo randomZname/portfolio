@@ -19,8 +19,22 @@
 }
 
 .journey__steps {
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+/* progress spine — draws down on scroll (scaleY 0 -> 1) */
+.journey__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(180px + clamp(1.5rem, 4vw, 3rem) / 2);
+  width: 2px;
+  background: linear-gradient(180deg, var(--grad-2), var(--grad-3), var(--grad-4));
+  transform: scaleY(0);
+  transform-origin: top;
+  pointer-events: none;
 }
 
 .step {
@@ -58,7 +72,20 @@
   max-width: 56ch;
 }
 
+/* desktop: pin the year within its row while the body scrolls past */
+@media (min-width: 900px) {
+  .step {
+    position: relative;
+    align-items: start;
+  }
+  .step__year {
+    position: sticky;
+    top: 15vh;
+  }
+}
+
 @media (max-width: 720px) {
+  .journey__line { display: none; }
   .step {
     grid-template-columns: 1fr;
     gap: 0.6rem;

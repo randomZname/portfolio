@@ -6,12 +6,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Cursor from './components/Cursor'
 import Preloader from './components/Preloader'
 import Nav from './components/Nav'
+import CommandPalette from './components/CommandPalette'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
+import Projects from './components/Projects'
 import Services from './components/Services'
 import Stats from './components/Stats'
 import Journey from './components/Journey'
-import Projects from './components/Projects'
 import Contact from './components/Contact'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -60,13 +61,14 @@ export default function App() {
       <div className="grain" />
       <Preloader onDone={handleDone} />
       <Nav />
+      <CommandPalette />
       <main>
         <Hero play={revealed} />
         <Marquee />
+        <Projects />
         <Services />
         <Stats />
         <Journey />
-        <Projects />
         <Contact />
       </main>
     </>

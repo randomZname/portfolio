@@ -2,12 +2,16 @@
   padding-block: clamp(6rem, 12vw, 11rem);
 }
 
+.projects__ribbon {
+  margin-bottom: clamp(3.5rem, 8vw, 6rem);
+}
+
 .projects__head {
   margin-bottom: clamp(3.5rem, 7vw, 6rem);
 }
 .projects__heading {
   font-size: clamp(2.6rem, 8vw, 6rem);
-  max-width: 14ch;
+  max-width: 16ch;
 }
 
 /* ---- row ---- */
@@ -25,16 +29,12 @@
 .project:nth-child(even) .project__media { order: 2; }
 .project:nth-child(even) .project__info { order: 1; }
 
-/* ---- media (interactive) ---- */
+/* ---- media (editorial, no pointer tilt) ---- */
 .project__media {
   position: relative;
   display: block;
   border-radius: 18px;
   padding: 1px;
-  transform-style: preserve-3d;
-  will-change: transform;
-  --mx: 50%;
-  --my: 50%;
 }
 
 .project__border {
@@ -63,6 +63,22 @@
   background: var(--bg-card);
 }
 
+/* hover sheen — thermal gradient wash, overlay-blended */
+.project__media-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, var(--grad-2), var(--grad-3), var(--grad-4));
+  opacity: 0;
+  mix-blend-mode: overlay;
+  transition: opacity .5s var(--ease);
+  pointer-events: none;
+}
+.project__media:hover .project__media-inner::after,
+.project__media:focus-visible .project__media-inner::after {
+  opacity: 0.25;
+}
+
 .project__img {
   width: 100%;
   height: 100%;
@@ -76,22 +92,6 @@
   transform: scale(1.08);
   filter: saturate(1.05) brightness(1);
 }
-
-/* cursor-following spotlight glow */
-.project__spotlight {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .4s var(--ease);
-  background: radial-gradient(
-    340px circle at var(--mx) var(--my),
-    rgba(198, 244, 50, 0.18),
-    transparent 60%
-  );
-  mix-blend-mode: screen;
-}
-.project__media:hover .project__spotlight { opacity: 1; }
 
 /* "View live" pill */
 .project__view {
@@ -107,7 +107,7 @@
   font-family: var(--font-mono);
   font-size: 0.82rem;
   letter-spacing: 0.02em;
-  color: #000;
+  color: var(--bg);
   background: var(--accent);
   opacity: 0;
   transition: opacity .4s var(--ease), transform .5s var(--ease);
@@ -132,7 +132,7 @@
 }
 .project__title {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
   line-height: 1;
   margin-bottom: 0.9rem;
 }
@@ -166,6 +166,5 @@
   }
   .project:nth-child(even) .project__media { order: 1; }
   .project:nth-child(even) .project__info { order: 2; }
-  .project__media { transform: none !important; }
   .project__view { opacity: 1; transform: translate(-50%, -50%); }
 }

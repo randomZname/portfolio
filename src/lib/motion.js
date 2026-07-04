@@ -3,3 +3,14 @@
 export const prefersReduced = () =>
   typeof window !== 'undefined' &&
   window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+// WebGL capability gate for the SignalField hero canvas. When false the
+// hero renders the static CSS gradient fallback instead of a <Canvas>.
+export function supportsWebGL() {
+  try {
+    const c = document.createElement('canvas')
+    return !!(c.getContext('webgl2') || c.getContext('webgl'))
+  } catch {
+    return false
+  }
+}
