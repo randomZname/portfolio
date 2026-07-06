@@ -104,11 +104,13 @@ export default function Projects() {
                     {p.liveLabel} <Arrow />
                   </a>
                 </Magnetic>
-                <Magnetic strength={0.3}>
-                  <a className="btn btn--ghost" href={p.code} target="_blank" rel="noopener noreferrer" data-cursor="hover">
-                    Code <Arrow />
-                  </a>
-                </Magnetic>
+                {p.code && (
+                  <Magnetic strength={0.3}>
+                    <a className="btn btn--ghost" href={p.code} target="_blank" rel="noopener noreferrer" data-cursor="hover">
+                      Code <Arrow />
+                    </a>
+                  </Magnetic>
+                )}
               </div>
             </div>
           </article>

@@ -61,7 +61,7 @@ export const stats = {
   eyebrow: 'Telemetry',
   items: [
     { value: 2, suffix: 'y+', label: 'Running my own business' },
-    { value: 4, suffix: '', label: 'Products shipped & live' },
+    { value: 5, suffix: '', label: 'Products shipped & live' },
     { value: 13, suffix: 'K+', label: 'Lines of Python in my AI agent' },
     { value: 25, suffix: '+', label: 'Agent tools built' },
   ],
@@ -118,6 +118,16 @@ export const projects = {
     },
     {
       id: '04',
+      name: 'Aura',
+      image: '/projects/aura.jpg',
+      tagline: 'AI creators that post themselves.',
+      desc: 'Create AI avatars, and an agent writes, directs, renders and packages content for every platform — then publishes it on autopilot.',
+      tags: ['AI Avatars', 'Content Pipeline', 'Autopilot', 'Analytics'],
+      live: 'https://aura-content-os-six.vercel.app/',
+      liveLabel: 'Live demo',
+    },
+    {
+      id: '05',
       name: 'AlterMed',
       image: '/projects/altermed.jpg',
       tagline: 'A clinic platform, production-ready.',
