@@ -14,9 +14,9 @@ export const nav = {
     { label: 'Work', href: '#work' },
     { label: 'Journey', href: '#journey' },
     { label: 'Contact', href: '#contact' },
-    { label: 'Résumé ↗', href: '/cv/Bogdan_Stefanov_CV_EN.pdf', external: true },
+    { label: 'Resume ↗', href: '/cv/Bogdan_Stefanov_CV_EN.pdf', external: true },
   ],
-  paletteHint: 'Ctrl K',
+  paletteHint: 'Ctrl+K',
 }
 
 export const preloader = {
@@ -29,10 +29,10 @@ export const preloader = {
 }
 
 export const hero = {
-  availability: 'Available — AI roles, freelance & collabs',
+  availability: 'Available — AI / agentic / automation roles, freelance & collabs',
   name: ['BOGDAN', 'STEFANOV'],
   role: { pre: 'AI developer who builds agents that ', em: 'ship', post: '.' },
-  sub: 'Custom LLM agents, web apps & automations — end to end.',
+  sub: 'Custom LLM agents, web apps & automations — end-to-end.',
   meta: {
     coords: 'SOFIA · 42.69°N 23.32°E',
     tz: 'Europe/Sofia',
@@ -49,7 +49,7 @@ export const marquee = [
 
 export const services = {
   eyebrow: 'What I build',
-  heading: 'Three things, shipped end to end.',
+  heading: 'Three things, shipped end-to-end.',
   items: [
     { id: '01', title: 'AI Agents', desc: 'Custom LLM agents with tool use, RAG and memory that actually do the work — not demos.' },
     { id: '02', title: 'Web Apps & SaaS', desc: 'Full-stack products from zero — auth, payments, the whole thing, shipped.' },
@@ -70,12 +70,12 @@ export const stats = {
 export const journey = {
   eyebrow: 'Who I am',
   heading: { pre: 'I build things that ', em: 'ship', post: '.' },
-  lead: "Founder, operator and self-taught engineer. I've led teams and run my own business — now I build AI products end to end. Give me a problem; I'll learn whatever it takes and ship the solution.",
+  lead: "Founder, operator and self-taught engineer. I've led teams and run my own business — now I build AI products end-to-end. Give me a problem; I'll learn whatever it takes and ship the solution.",
   steps: [
     { year: '2023', title: 'Sold & led', desc: 'Closed financial products and led a sales team. Learned to read people and own the number.' },
-    { year: '2024–25', title: 'Advised on the money', desc: 'Guided clients through financing across banks, start to signed. Trust, numbers, pressure.' },
+    { year: '2024–25', title: 'Advised on the money', desc: 'Guided clients through financing across banks, start to finish, signed. Trust, numbers, pressure.' },
     { year: '2024 →', title: 'Built a business', desc: 'Founded a tutoring school — multiple locations, a team I hired and run. Still running it.' },
-    { year: '2024 →', title: 'Now I build AI', desc: 'Self-taught my way to shipping agentic AI, SaaS and automations — alone, end to end.' },
+    { year: '2024 →', title: 'Now I build AI', desc: 'Self-taught my way to shipping agentic AI, SaaS and automations — alone, end-to-end.' },
   ],
 }
 
@@ -121,7 +121,7 @@ export const projects = {
       name: 'Aura',
       image: '/projects/aura.jpg',
       tagline: 'AI creators that post themselves.',
-      desc: 'Create AI avatars, and an agent writes, directs, renders and packages content for every platform — then publishes it on autopilot.',
+      desc: 'Create AI avatars; an agent writes, directs, renders and packages content for every platform — then publishes it on autopilot.',
       tags: ['AI Avatars', 'Content Pipeline', 'Autopilot', 'Analytics'],
       live: 'https://aura-content-os-six.vercel.app/',
       liveLabel: 'Live demo',
@@ -143,7 +143,7 @@ export const projects = {
 export const contact = {
   eyebrow: "Let's build",
   heading: { pre: "Let's build ", em: 'something', post: '.' },
-  sub: "Got a problem worth solving? I'm open to AI / Agentic / Automation roles, freelance and collabs.",
+  sub: "Got a problem worth solving? I'm open to AI / agentic / automation roles, freelance and collabs.",
   email: 'bogdan.mstefanov@gmail.com',
   phone: '+359 877 772 253',
   location: 'Sofia, Bulgaria',
@@ -152,7 +152,7 @@ export const contact = {
     { label: 'GitHub', href: 'https://github.com/randomZname' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/bogdan-stefanov-2032802b0' },
     { label: 'Email', href: 'mailto:bogdan.mstefanov@gmail.com' },
-    { label: 'Résumé', href: '/cv/Bogdan_Stefanov_CV_EN.pdf' },
+    { label: 'Resume', href: '/cv/Bogdan_Stefanov_CV_EN.pdf' },
   ],
 }
 
@@ -174,7 +174,7 @@ export const palette = {
       items: [
         { label: 'GitHub', href: 'https://github.com/randomZname', external: true },
         { label: 'LinkedIn', href: 'https://www.linkedin.com/in/bogdan-stefanov-2032802b0', external: true },
-        { label: 'Résumé', href: '/cv/Bogdan_Stefanov_CV_EN.pdf', external: true },
+        { label: 'Resume', href: '/cv/Bogdan_Stefanov_CV_EN.pdf', external: true },
         { label: 'Email', href: 'mailto:bogdan.mstefanov@gmail.com', external: true },
       ],
     },
